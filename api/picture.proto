@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package pics;
+
+service DownloadPic {
+    rpc Download (Id) returns (Picture) {}
+}
+
+message Id {
+    string id = 1;
+}
+
+message Picture {
+    bytes pic = 1;
+}

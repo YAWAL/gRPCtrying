@@ -6,7 +6,7 @@ service DownloadPic {
     rpc Download (Id) returns (Picture) {}
 }
 
-service SearchPhoto{
+service SearchPic{
     rpc Search (Name) returns (Picture) {}
 }
 

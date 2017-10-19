@@ -160,64 +160,64 @@ var _DownloadPic_serviceDesc = grpc.ServiceDesc{
 	Metadata: "picture.proto",
 }
 
-// Client API for SearchPhoto service
+// Client API for SearchPic service
 
-type SearchPhotoClient interface {
+type SearchPicClient interface {
 	Search(ctx context.Context, in *Name, opts ...grpc.CallOption) (*Picture, error)
 }
 
-type searchPhotoClient struct {
+type searchPicClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewSearchPhotoClient(cc *grpc.ClientConn) SearchPhotoClient {
-	return &searchPhotoClient{cc}
+func NewSearchPicClient(cc *grpc.ClientConn) SearchPicClient {
+	return &searchPicClient{cc}
 }
 
-func (c *searchPhotoClient) Search(ctx context.Context, in *Name, opts ...grpc.CallOption) (*Picture, error) {
+func (c *searchPicClient) Search(ctx context.Context, in *Name, opts ...grpc.CallOption) (*Picture, error) {
 	out := new(Picture)
-	err := grpc.Invoke(ctx, "/pics.SearchPhoto/Search", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/pics.SearchPic/Search", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// Server API for SearchPhoto service
+// Server API for SearchPic service
 
-type SearchPhotoServer interface {
+type SearchPicServer interface {
 	Search(context.Context, *Name) (*Picture, error)
 }
 
-func RegisterSearchPhotoServer(s *grpc.Server, srv SearchPhotoServer) {
-	s.RegisterService(&_SearchPhoto_serviceDesc, srv)
+func RegisterSearchPicServer(s *grpc.Server, srv SearchPicServer) {
+	s.RegisterService(&_SearchPic_serviceDesc, srv)
 }
 
-func _SearchPhoto_Search_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SearchPic_Search_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Name)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SearchPhotoServer).Search(ctx, in)
+		return srv.(SearchPicServer).Search(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pics.SearchPhoto/Search",
+		FullMethod: "/pics.SearchPic/Search",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SearchPhotoServer).Search(ctx, req.(*Name))
+		return srv.(SearchPicServer).Search(ctx, req.(*Name))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _SearchPhoto_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "pics.SearchPhoto",
-	HandlerType: (*SearchPhotoServer)(nil),
+var _SearchPic_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "pics.SearchPic",
+	HandlerType: (*SearchPicServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Search",
-			Handler:    _SearchPhoto_Search_Handler,
+			Handler:    _SearchPic_Search_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -227,7 +227,7 @@ var _SearchPhoto_serviceDesc = grpc.ServiceDesc{
 func init() { proto.RegisterFile("picture.proto", fileDescriptor0) }
 
 var fileDescriptor0 = []byte{
-	// 167 bytes of a gzipped FileDescriptorProto
+	// 165 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x2d, 0xc8, 0x4c, 0x2e,
 	0x29, 0x2d, 0x4a, 0xd5, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x29, 0xc8, 0x4c, 0x2e, 0x56,
 	0x12, 0xe1, 0x62, 0xf2, 0x4c, 0x11, 0xe2, 0x03, 0x91, 0x12, 0x8c, 0x0a, 0x8c, 0x1a, 0x9c, 0x41,
@@ -235,8 +235,8 @@ var fileDescriptor0 = []byte{
 	0xc9, 0x60, 0x39, 0x9e, 0x20, 0x10, 0x53, 0x49, 0x8a, 0x8b, 0xc5, 0x2f, 0x31, 0x37, 0x55, 0x48,
 	0x08, 0x42, 0x43, 0xb5, 0x81, 0xd9, 0x46, 0x26, 0x5c, 0xdc, 0x2e, 0xf9, 0xe5, 0x79, 0x39, 0xf9,
 	0x89, 0x29, 0x01, 0x99, 0xc9, 0x42, 0xaa, 0x5c, 0x1c, 0x30, 0xae, 0x10, 0x87, 0x1e, 0xc8, 0x42,
-	0x3d, 0xcf, 0x14, 0x29, 0x5e, 0x08, 0x0b, 0x6a, 0x83, 0x12, 0x03, 0x48, 0x57, 0x70, 0x6a, 0x62,
-	0x51, 0x72, 0x46, 0x40, 0x06, 0xc8, 0x65, 0xaa, 0x5c, 0x6c, 0x10, 0xae, 0x10, 0x17, 0x44, 0x25,
-	0xc8, 0x68, 0x0c, 0x5d, 0x49, 0x6c, 0x60, 0x7f, 0x18, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0x7a,
-	0xa7, 0x9a, 0x36, 0xd8, 0x00, 0x00, 0x00,
+	0x3d, 0xcf, 0x14, 0x29, 0x5e, 0x08, 0x0b, 0x6a, 0x83, 0x12, 0x83, 0x91, 0x11, 0x17, 0x67, 0x70,
+	0x6a, 0x62, 0x51, 0x72, 0x06, 0x44, 0x0f, 0x1b, 0x84, 0x23, 0xc4, 0x05, 0x51, 0x07, 0x32, 0x18,
+	0x43, 0x4f, 0x12, 0x1b, 0xd8, 0x17, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0xd7, 0xf5, 0x0a,
+	0xfb, 0xd6, 0x00, 0x00, 0x00,
 }

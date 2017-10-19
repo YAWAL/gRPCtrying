@@ -25,7 +25,7 @@ func main(){
 		log.Fatalf("Error has occured %d: %v", port, err)
 	}
 	srv := grpc.NewServer()
-	api.RegisterSearchPhotoServer(srv, server{})
+	api.RegisterSearchPicServer(srv, server{})
 	err = srv.Serve(lis)
 	if err != nil{
 		log.Fatalf("Error has occured: %v", err)
@@ -66,7 +66,7 @@ func (server) Search(ctx context.Context, name *api.Name) (*api.Picture, error) 
 	id := &api.Id{Id:path}
 	pictures, err := client.Download(context.Background(), id)
 	if err != nil{
-		log.Fatalf("Error has occured: %v", err)
+		log.Printf("Error has occured: %v", err)
 		return new(api.Picture), err
 	}
 	return pictures, nil

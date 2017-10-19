@@ -2,7 +2,7 @@ FROM golang
 
 EXPOSE 50112
 
-ADD ./downloadPic /go/src/github.com/YAWAL/downloadPic
+ADD ./downloadPic /go/src/github.com/YAWAL/gRPCtrying/downloadPic
 ADD ./api /go/src/github.com/YAWAL/gRPCtrying/api
 RUN mkdir -p home/vya/Pictures
 COPY ./pics home/vya/Pictures

@@ -16,9 +16,9 @@ func main(){
 
 	port := flag.Int("p", 50112, "port to listen to")
 	flag.Parse()
-	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
+	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", *port))
 	if err != nil{
-		log.Fatalf("Error has occured %d: %v", port, err)
+		log.Fatalf("Error has occured %d: %v", *port, err)
 	}
 	srv := grpc.NewServer()
 	api.RegisterDownloadPicServer(srv, server{})

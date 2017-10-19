@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	backend := flag.String("backend", "172.18.0.3.50111", "port for connection to download server")
+	backend := flag.String("backend", "172.17.0.3:50111", "port for connection to download server")
 	flag.Parse()
 
 	cntx, cancel := context.WithTimeout(context.Background(), 5*time.Second)

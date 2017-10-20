@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+
+ search:
+  build:
+   context: .
+   dockerfile: search.Dockerfile
+  ports:
+    - "50111:50111"
+
+ download:
+  build:
+    context: .
+    dockerfile: download.Dockerfile
+  ports:
+    - "50112:50112"

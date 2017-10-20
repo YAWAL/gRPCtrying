@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-const target = "172.17.0.3:50112"
+const target = ":50112"
 
 func main(){
 

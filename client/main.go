@@ -12,25 +12,25 @@ import (
 )
 
 func main() {
-	backend := flag.String("backend", "172.17.0.3:50111", "port for connection to download server")
+	backend := flag.String("backend", ":50111", "port for connection to download server")
 	flag.Parse()
 
-	cntx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	cntx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
 	conn, err := grpc.DialContext(cntx, *backend, grpc.WithInsecure(), grpc.WithBlock())
 	defer conn.Close()
 	if err != nil {
-		log.Fatalf("Error has occured %v:", err)
+		log.Fatalf("Error DialContext has occured:%v", err)
 	}
 	client := api.NewSearchPicClient(conn)
-	name := &api.Name{Name: "gopher"}
+	name := &api.Name{Name: "gopher1.png"}
 	picture, err := client.Search(context.Background(), name)
 	if err != nil {
-		log.Fatalf("Error has occured %v:", err)
+		log.Fatalf("Error Search has occured:%v", err)
 	}
 	if err = ioutil.WriteFile("gopher1.png", picture.Pic, 0666); err != nil {
-		log.Fatalf("Error has occured %v:", err)
+		log.Fatalf("Error WriteFile has occured:%v", err)
 		return
 	}
 	log.Println("File has been created")

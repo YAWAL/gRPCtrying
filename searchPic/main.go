@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-const target = ":50112"
+const target = "localhost:50112"
 
 func main(){
 

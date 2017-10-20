@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	backend := flag.String("backend", ":50111", "port for connection to download server")
+	backend := flag.String("backend", "localhost:50111", "port for connection to download server")
 	flag.Parse()
 
 	cntx, cancel := context.WithTimeout(context.Background(), 10*time.Second)

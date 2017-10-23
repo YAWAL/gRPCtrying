@@ -35,7 +35,7 @@ func main(){
 type server struct {}
 
 func (server) Search(ctx context.Context, name *api.Name) (*api.Picture, error) {
-	src := "/pics"
+	src := "/home/vya/Pictures"
 	pics, err := ioutil.ReadDir(src)
 	if err != nil{
 		log.Printf("Error has occured %v", err)

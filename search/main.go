@@ -14,40 +14,43 @@ import (
 	"time"
 )
 
-const target = "localhost:50112"
+const (
+	target            = "download:50112"
+	searchServicePort = 50111
+	resourceFolder    = "/home/vya/Pictures"
+)
 
-func main(){
+func main() {
 
-	port := flag.Int("p", 50111, "port to listen to")
+	port := flag.Int("p", searchServicePort, "port to listen to")
 	flag.Parse()
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", *port))
-	if err != nil{
+	if err != nil {
 		log.Fatalf("Error has occured %d: %v", *port, err)
 	}
 	srv := grpc.NewServer()
 	api.RegisterSearchPicServer(srv, server{})
 	err = srv.Serve(lis)
-	if err != nil{
+	if err != nil {
 		log.Fatalf("Error has occured: %v", err)
 	}
 }
 
-type server struct {}
+type server struct{}
 
 func (server) Search(ctx context.Context, name *api.Name) (*api.Picture, error) {
-	src := "/home/vya/Pictures"
-	pics, err := ioutil.ReadDir(src)
-	if err != nil{
+	pics, err := ioutil.ReadDir(resourceFolder)
+	if err != nil {
 		log.Printf("Error has occured %v", err)
 		return new(api.Picture), err
 	}
 
 	var path string = ""
 
-	for _, p := range pics{
+	for _, p := range pics {
 		if !p.IsDir() {
 			strings.Contains(p.Name(), name.Name)
-			path = filepath.Join(src, p.Name())
+			path = filepath.Join(resourceFolder, p.Name())
 			break
 		}
 	}
@@ -58,14 +61,14 @@ func (server) Search(ctx context.Context, name *api.Name) (*api.Picture, error) 
 	defer cancel()
 
 	conn, err = grpc.DialContext(ctx, target, grpc.WithInsecure(), grpc.WithBlock())
-	if err != nil{
+	if err != nil {
 		log.Fatalf("Error has occured: %v", err)
 	}
 
 	client := api.NewDownloadPicClient(conn)
-	id := &api.Id{Id:path}
+	id := &api.Id{Id: path}
 	pictures, err := client.Download(context.Background(), id)
-	if err != nil{
+	if err != nil {
 		log.Printf("Error has occured: %v", err)
 		return new(api.Picture), err
 	}

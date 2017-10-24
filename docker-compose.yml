@@ -15,3 +15,8 @@ services:
     dockerfile: download.Dockerfile
   ports:
     - "50112:50112"
+
+
+#networks:
+# mynet:
+#  pid: "host"

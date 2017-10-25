@@ -49,13 +49,13 @@ func (server) Search(ctx context.Context, name *api.Name) (*api.Picture, error) 
 
 	for _, p := range pics {
 		if !p.IsDir() {
-			if strings.Contains(p.Name(), name.Name){
+			if strings.Contains(p.Name(), name.Name) {
 				path = filepath.Join(resourceFolder, p.Name())
 				break
 			}
 		}
 	}
-fmt.Println(path)
+	fmt.Println(path)
 	var conn *grpc.ClientConn
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)

@@ -1,0 +1,21 @@
+Index: toBeDeleted/forPatch.go
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- toBeDeleted/forPatch.go	(date 1511781100000)
++++ toBeDeleted/forPatch.go	(date 1511781304755)
+@@ -6,4 +6,12 @@
+ 
+ func createPath()  {
+ 	fmt.Println("Create patch")
++}
++
++func change1()  {
++	fmt.Print("change 1")
++}
++
++func chang2()  {
++	
+ }
+\ No newline at end of file
